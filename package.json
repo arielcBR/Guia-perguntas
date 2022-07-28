@@ -1,0 +1,26 @@
+{
+  "name": "guia_perguntas",
+  "version": "1.0.0",
+  "description": "Uma plataforma de perguntas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arielcBR/Guia-perguntas.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Ariel Campos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arielcBR/Guia-perguntas/issues"
+  },
+  "homepage": "https://github.com/arielcBR/Guia-perguntas#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1"
+  }
+}
