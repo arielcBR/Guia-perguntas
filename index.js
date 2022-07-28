@@ -8,11 +8,13 @@ app.set("view engine", "ejs");
 app.get("/:nome/:lang", (req, res) => {
     let nome = req.params.nome;
     var lang = req.params.lang;
+    var exibirMsg = true;
     res.render("index", {
         nome,
         lang,
         empresa: "Guia do Programador",
-        inscritos: 8000
+        inscritos: 8210,
+        msg: exibirMsg
     });
 });
 
@@ -20,5 +22,5 @@ app.get("/:nome/:lang", (req, res) => {
 // Colocar servidor online, deve ser o último bloco de código do programa
 
 app.listen(8080, () => {
-   console.log("Servidor online!!!"); 
+   console.log("Servidor online em localhost:8080"); 
 });
