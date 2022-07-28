@@ -4,6 +4,9 @@ const app = express();
 // Estou dizendo para o express usar o EJS para view engine
 app.set("view engine", "ejs");
 
+// Configuração para arquivos estáticos (HTML, CSS, Javascript, Imagens...)
+app.use(express.static("public"))
+
 // Rota
 app.get("/:nome/:lang", (req, res) => {
     let nome = req.params.nome;
