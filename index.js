@@ -2,15 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { urlencoded } = require("body-parser");
 const app = express();
+const connection = require("./database/database");      // Carregando conexão do banco de dados
+const perguntaModel = require("./database/Pergunta");   // Carregando model de pergunta
 
-// Carregando conexão do banco de dados
-const connection = require("./database/database");
-
-// 
+// Banco de dados
 connection
     .authenticate()
     .then(() => {
-        console.log("Conexão feita com o banco banco de dados OK!");
+        console.log("Conexão feita com o banco de dados OK!");
     })
     .catch((msgErro) => {
         console.error("Conexão falhou: " + msgErro);
