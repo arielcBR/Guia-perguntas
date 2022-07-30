@@ -1,13 +1,19 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+const { urlencoded } = require("body-parser");
 const app = express();
 
 // Estou dizendo para o express usar o EJS para view engine
 app.set("view engine", "ejs");
 
+// Linkando body-parser ao node (responsável por captar os dados do form para o backend)
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 // Configuração para arquivos estáticos (HTML, CSS, Javascript, Imagens...)
 app.use(express.static("public"))
 
-// Rota
+// Rotas
 app.get("/", (req, res) => {
     res.render("index");
 });
@@ -17,7 +23,9 @@ app.get("/perguntar", (req, res) => {
 });
 
 app.post("/salvarpergunta", (req, res) => {
-    res.send("Formulário recebido!");
+    var titulo = req.body.titulo;
+    var descricao = req.body.descricao;
+    res.send(`Formulário recebido! titulo: ${titulo} descrição: ${descricao}`);
 });
 
 
