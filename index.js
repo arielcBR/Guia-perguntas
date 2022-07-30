@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const { urlencoded } = require("body-parser");
 const app = express();
 const connection = require("./database/database");      // Carregando conexão do banco de dados
-const perguntaModel = require("./database/Pergunta");   // Carregando model de pergunta
+const Pergunta = require("./database/Pergunta");   // Carregando model de pergunta
 
 // Banco de dados
 connection
@@ -37,7 +37,12 @@ app.get("/perguntar", (req, res) => {
 app.post("/salvarpergunta", (req, res) => {
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
-    res.send(`Formulário recebido! titulo: ${titulo} descrição: ${descricao}`);
+    Pergunta.create({
+        titulo: titulo,
+        descricao: descricao
+    }).then(() => {
+        res.redirect("/");
+    })
 });
 
 
