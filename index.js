@@ -5,15 +5,8 @@ const app = express();
 const connection = require("./database/database");      // Carregando conexão do banco de dados
 const Pergunta = require("./database/Pergunta");   // Carregando model de pergunta
 
-// Banco de dados
-connection
-    .authenticate()
-    .then(() => {
-        console.log("Conexão feita com o banco de dados OK!");
-    })
-    .catch((msgErro) => {
-        console.error("Conexão falhou: " + msgErro);
-    })
+// Configuração para arquivos estáticos (HTML, CSS, Javascript, Imagens...)
+app.use(express.static("public"))
 
 // Estou dizendo para o express usar o EJS para view engine
 app.set("view engine", "ejs");
@@ -22,12 +15,14 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Configuração para arquivos estáticos (HTML, CSS, Javascript, Imagens...)
-app.use(express.static("public"))
-
 // Rotas
 app.get("/", (req, res) => {
-    res.render("index");
+    Pergunta.findAll({ raw: true}).then(perguntas => {
+        console.log(perguntas);
+        res.render("index", {
+            perguntas: perguntas
+        });
+    });
 });
 
 app.get("/perguntar", (req, res) => {
@@ -45,6 +40,15 @@ app.post("/salvarpergunta", (req, res) => {
     })
 });
 
+// Banco de dados
+connection
+    .authenticate()
+    .then(() => {
+        console.log("Conexão feita com o banco de dados OK!");
+    })
+    .catch((msgErro) => {
+        console.error("Conexão falhou: " + msgErro);
+    })
 
 // Colocar servidor online, deve ser o último bloco de código do programa
 
