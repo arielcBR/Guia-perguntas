@@ -43,6 +43,22 @@ app.post("/salvarpergunta", (req, res) => {
     })
 });
 
+app.get("/pergunta/:id", (req, res) => {
+    var id = req.params.id;
+    Pergunta.findOne({
+        where: {id: id}
+    }).then(pergunta => {
+        if (pergunta != undefined) { // Pergunta encontrada no banco de dados
+            res.render("pergunta", {
+                pergunta: pergunta
+            });
+        }                            // Pergunta não encontrada no banco de dados
+        else {
+            res.redirect("/");       
+        }
+    })
+});
+
 // Banco de dados
 connection
     .authenticate()
