@@ -4,6 +4,7 @@ const { urlencoded } = require("body-parser");
 const app = express();
 const connection = require("./database/database");      // Carregando conexão do banco de dados
 const Pergunta = require("./database/Pergunta");   // Carregando model de pergunta
+const Resposta = require("./database/Resposta");   // Carregando model de resposta
 
 // Configuração para arquivos estáticos (HTML, CSS, Javascript, Imagens...)
 app.use(express.static("public"))
